@@ -1,0 +1,145 @@
+package com.hospitalmanagment.doctor.dto;
+
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import com.hospitalmanagment.valueobject.Gender;
+import com.hospitalmanagment.valueobject.Specialty;
+import com.hospitalmanagment.valueobject.doctor.Status;
+
+public class DoctorRequest {
+
+	@NotBlank
+	@Min(11)
+	@Max(11)
+	private int identityNo;
+
+	@NotBlank
+	@Min(3)
+	@Max(25)
+	private String firstName;
+
+	@NotBlank
+	@Min(2)
+	@Max(25)
+	private String lastName;
+
+	@NotBlank
+	private Date birthYear;
+
+	@NotBlank
+	private Gender gender;
+
+	@Column(name = "statu")
+	@NotBlank
+	private Status statu;
+
+	@NotBlank
+	private Specialty specialty;
+
+	public DoctorRequest() {
+
+	}
+
+	public DoctorRequest(@NotBlank @Min(11) @Max(11) int identityNo, @NotBlank @Min(3) @Max(25) String firstName,
+			@NotBlank @Min(2) @Max(25) String lastName, @NotBlank Date birthYear, @NotBlank Gender gender,
+			@NotBlank Status statu, @NotBlank Specialty specialty) {
+		super();
+		this.identityNo = identityNo;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthYear = birthYear;
+		this.gender = gender;
+		this.statu = statu;
+		this.specialty = specialty;
+	}
+
+	public int getIdentityNo() {
+		return identityNo;
+	}
+
+	public void setIdentityNo(int identityNo) {
+		this.identityNo = identityNo;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(Date birthYear) {
+		this.birthYear = birthYear;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Status getStatu() {
+		return statu;
+	}
+
+	public void setStatu(Status statu) {
+		this.statu = statu;
+	}
+
+	public Specialty getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(Specialty specialty) {
+		this.specialty = specialty;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(birthYear, firstName, gender, identityNo, lastName, specialty, statu);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DoctorRequest other = (DoctorRequest) obj;
+		return Objects.equals(birthYear, other.birthYear) && Objects.equals(firstName, other.firstName)
+				&& gender == other.gender && identityNo == other.identityNo && Objects.equals(lastName, other.lastName)
+				&& specialty == other.specialty && statu == other.statu;
+	}
+
+	@Override
+	public String toString() {
+		return "DoctorRequest [identityNo=" + identityNo + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", birthYear=" + birthYear + ", gender=" + gender + ", statu=" + statu + ", specialty=" + specialty
+				+ "]";
+	}
+
+	
+}
